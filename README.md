@@ -6,8 +6,8 @@
   - Docker Compose installed (if not)
 ## Running the application:
   - Create a local directory on your machine
-  - `CD` into it
+  - `cd` into it
   - Run `git clone https://github.com/todorpopov/rnm.git`
-  - `CD` into the `rnm` directory
+  - `cd` into the `/rnm` directory
   - Run `docker-compose build`
   - Run `docker-compose up`
