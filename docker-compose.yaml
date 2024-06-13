@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  react-frontend:
+    container_name: react_frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - rnm-app
+    depends_on:
+      - nestjs-api
+  nestjs-api:
+    container_name: nestjs-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - rnm-app
+    depends_on:
+      - mongo-db
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:4.0.28-xenial
+    ports:
+      - "27017:27017"
+    networks:
+      - rnm-app
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  rnm-app:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
